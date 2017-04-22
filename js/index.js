@@ -1,125 +1,117 @@
-// declaring variables
+// declare variables
 var start = document.querySelector('#start-btn');
-var reset = document.querySelector('#reset-btn');
-var rest = document.querySelector('#break-btn');
-var min = document.querySelector('#minutes');
-var sec = document.querySelector('#seconds');
+var min = document.querySelector('#minutes-session');
+var sec = document.querySelector('#seconds-session');
 var plus = document.querySelector('#plus');
 var minus = document.querySelector('#minus');
-var isRunning = false;
-var counter;
+var chill = document.querySelector('#break-btn');
+var timerMin = document.querySelector('#minutes');
+var timerSec = document.querySelector('#seconds');
+var plusBreak = document.querySelector('#plus-break');
+var minusBreak = document.querySelector('#minus-break');
+var minuteBreak = document.querySelector('#minutes-break');
 
+
+var counter;
+var minutesBreak = eval(minuteBreak.innerHTML);
 var minutes = eval(min.innerHTML);
 var seconds = 60;
 
+// our pomodoro function
+function startPomodoro() {
+	seconds--;
 
-
-function timer() {
-	
-	seconds--;	
-	// if seconds are less or equal to zero, minutes -- 
 	if(seconds <= -1) {
 		minutes--;
 		seconds = 59;
 	}
-
-	// else if minutes are less then 0, i'll start the break function
+	
 	if(minutes <= -1) {
-		// counter end
-		clearInterval(counter);
-
+		// when the pomodoro is finished, we will start the break function
+		counter = clearInterval(counter);
 		breakTime();
-		counter = setInterval(breakTime, 1000);
-		//breakTime();
-		
 
-		//return;
 	}
-	// showing numbers to the page
-	min.innerHTML = minutes;
-	sec.innerHTML = seconds;
-	
+	// displaying it to the dom
+	timerSec.innerHTML = seconds;
+	timerMin.innerHTML = minutes;
+
 }
 
- 
-// Break time function
+
 function breakTime() {
-	seconds = 59;
-	seconds--;
-	minutes = 4;
-	
-	
-	if(seconds <= -1) {
-		minutes--;
-		seconds = 60;
-	}
-
-	min.innerHTML = minutes;
-	sec.innerHTML = seconds;
+	alert("clicked");
 }
 
 
 
-// reset function 
-function resetTimer() {
-	minutes = 25;
-	seconds = 59;
-	minutes--;
-	min.innerHTML = minutes;
-	sec.innerHTML = seconds;
-	var counter = setInterval(timer, 1000);
-	
+////////////////////////////////
+// buttons functions
+////////////////////////////////
 
-	if(seconds <= -1) {
-		minutes --;
-		seconds = 60;
-	}
-	
-}
-
-
-
-
-// start
+// start function
 start.addEventListener("click", function() {
+	// making the buttons disabled when the start button is clicked will help avoiding bugs
+	start.disabled = true;
+	minus.disabled = true;
+	plus.disabled = true;
+
 	minutes--;
-	counter = setInterval(timer, 1000);
-	timer();
+	counter = setInterval(startPomodoro, 1000);
+	startPomodoro();
 });
 
 
-
-// reset function	
-reset.addEventListener("click", function() {
-	clearInterval(counter);
-	minutes--;
-	resetTimer();
-
-	
-});
-
-
-// break function
-rest.addEventListener("click", function() {
-	breakTime();
-
-});
-
-
-// functions that adds minutes
 
 plus.addEventListener("click", function() {
-		minutes = minutes + 1;
-		min.innerHTML = minutes;
-		
-
+	minutes++;
+	min.innerHTML = minutes;
+	timerMin.innerHTML = minutes;
 });
 
 
-// function that subtract minutes
 
 minus.addEventListener("click", function() {
-		minutes = minutes - 1;
-		min.innerHTML = minutes;
+	// if minutes are less then 0, we set them back to 0, because otherwise we will have -1 minutes, and that's not correct
+	if(minutes <= 0) {
+		minutes = 0;
+	// if minutes are not less than 0, then we can subtract
+	} else {
+	minutes--;
+	
+	}
+	// display data in the dom
+	min.innerHTML = minutes;
+	timerMin.innerHTML = minutes;
+});	
+
+
+////////////////////////////
+////////////////////////////
+
+chill.addEventListener("click", function() {
+	minutes = 5;
+	timerMin.innerHTML = minutes;
+	chill.disabled = true;
 });
+
+
+plusBreak.addEventListener("click", function() {
+	minutesBreak++;
+	minuteBreak.innerHTML = minutesBreak;
+});
+
+
+minusBreak.addEventListener("click", function() {
+	if(minutesBreak <= 0) {
+		minusBreak = 0;
+	} else {
+		minutesBreak--;
+	}
+	
+	minuteBreak.innerHTML = minutesBreak;
+});
+
+
+
 

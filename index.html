@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Pomodoro Clock</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!--<link rel="stylesheet" type="text/css" href="css/style.css"> -->
 </head>
 <body>
 
@@ -12,16 +12,32 @@
 
 
 
-<p class="timer">   
+<div class="session-length" style="padding-top: 3%"> 
+	<p>Session Length</p>
+		<button id="plus">+</button>
+		<span id="minutes-session">25</span>
+		<span> : </span>
+		<span id="seconds-session">00</span>
+		<button id="minus">-</button>
+</div> 
 
-<button id="plus">+</button>
-<span id="minutes">25</span>
-<span> : </span>
-<span id="seconds">00</span>
-<button id="minus">-</button>
+
+<div class="timer" style="padding-top: 2%">
+		<p>Timer</p>
+		<span id="minutes">25</span>
+		<span> : </span>
+		<span id="seconds">00</span>
+</div>
 
 
-</p>
+<div class="break-timer" style="padding-top: 2%">
+<p>Break Length</p>
+	<button id="plus-break">+</button>
+	<span id="minutes-break">5</span>
+	<span> : </span>
+	<span id="seconds-break">00</span>
+	<button id="minus-break">-</button>
+</div>
 
 
 
@@ -31,3 +47,7 @@
 <script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
+
+
+
+
