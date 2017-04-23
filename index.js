@@ -11,6 +11,7 @@ var minusBreak = document.querySelector('#minus-break');
 var minuteBreak = document.querySelector('#minutes-break');
 var reset = document.querySelector('#reset-btn');
 var audio = new Audio('beep.mp3');
+var pause = document.querySelector('#pause-btn');
 var counter;
 var minutesBreak = eval(minuteBreak.innerHTML);
 var minutes = eval(min.innerHTML);
@@ -19,6 +20,7 @@ var seconds = 60;
 // Pomodoro function
 function startPomodoro() {
 	reset.disabled = false;
+	pause.disabled = false;
 	seconds--;
 
 	if(seconds <= -1) {
@@ -147,3 +149,24 @@ reset.addEventListener("click", function() {
 	seconds = 60;
 	startPomodoro();
 });
+
+
+// Pause btn 
+pause.addEventListener("click", function() {
+	if(pause.innerHTML === "Pause") {
+		counter = clearInterval(counter);
+		pause.innerHTML = "Play";
+		reset.disabled = true;
+	} else {
+	pause.innerHTML = "Pause";
+	reset.disabled = false;
+	counter = setInterval(startPomodoro, 1000);
+
+	}
+	
+	
+	
+
+});
+
+
