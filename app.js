@@ -18,6 +18,7 @@ var minutesBreak = eval(minuteBreak.innerHTML);
 var minutes = eval(min.innerHTML);
 var seconds = 60;
 
+
 // Pomodoro function
 function startPomodoro() {
 	isRunning = true;
@@ -172,9 +173,5 @@ pause.addEventListener("click", function() {
 	counter = clearInterval(counter);
 	}
 	
-	
-	
-
 });
-
 
