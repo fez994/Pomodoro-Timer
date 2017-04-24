@@ -10,6 +10,7 @@ var plusBreak = document.querySelector('#plus-break');
 var minusBreak = document.querySelector('#minus-break');
 var minuteBreak = document.querySelector('#minutes-break');
 var reset = document.querySelector('#reset-btn');
+var isRunning = false;
 var audio = new Audio('beep.mp3');
 var pause = document.querySelector('#pause-btn');
 var counter;
@@ -19,6 +20,7 @@ var seconds = 60;
 
 // Pomodoro function
 function startPomodoro() {
+	isRunning = true;
 	reset.disabled = false;
 	pause.disabled = false;
 	seconds--;
@@ -41,12 +43,15 @@ function startPomodoro() {
 	// displaying it to the dom
 	timerSec.innerHTML = seconds;
 	timerMin.innerHTML = minutes;
+	//console.log(isRunning);
 
 }
 
 
 function breakTime() {
 	// disabling button
+	isRunning = false;
+	//console.log(isRunning);
 	plusBreak.disabled = true;
 	minusBreak.disabled = true;
 	reset.disabled = true;
@@ -153,15 +158,18 @@ reset.addEventListener("click", function() {
 
 // Pause btn 
 pause.addEventListener("click", function() {
-	if(pause.innerHTML === "Pause") {
-		counter = clearInterval(counter);
-		pause.innerHTML = "Play";
+	if(pause.innerHTML === "Play") {
+		if(isRunning === true) {
+			counter = setInterval(startPomodoro, 1000);
+		} else {
+			counter = setInterval(breakTime, 1000);
+		}
+		pause.innerHTML = "Pause";
 		reset.disabled = true;
 	} else {
-	pause.innerHTML = "Pause";
-	reset.disabled = false;
-	counter = setInterval(startPomodoro, 1000);
-
+	pause.innerHTML = "Play";
+	reset.disabled = true;
+	counter = clearInterval(counter);
 	}
 	
 	
