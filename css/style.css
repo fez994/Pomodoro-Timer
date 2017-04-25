@@ -1,7 +1,7 @@
 /* variables */
 body {
-  background-color: #F95959;
-  color: #233142;
+  background-color: #3D1860;
+  color: #BB99CD;
   font-family: "Raleway", sans-serif;
   text-transform: uppercase; }
 
@@ -17,15 +17,16 @@ h1 {
 button {
   background-color: transparent !important;
   font-size: 150% !important;
-  border-color: #233142 !important;
+  border-color: #BB99CD !important;
   margin-left: 1%;
   margin-right: 1%;
   outline: none !important;
-  font-weight: 200 !important; }
+  font-weight: 200 !important;
+  color: #BB99CD !important; }
 
 button:hover, button:after {
-  color: #ACDCEE !important;
-  border-color: #ACDCEE !important; }
+  color: #F5EDF7 !important;
+  border-color: #F5EDF7 !important; }
 
 .container {
   text-align: center; }
